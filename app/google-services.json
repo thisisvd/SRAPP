@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "810199618820",
+    "project_id": "simple-registration-app",
+    "storage_bucket": "simple-registration-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810199618820:android:f2a59651e9d759091e2c51",
+        "android_client_info": {
+          "package_name": "com.vdcodeassociate.simpleregistrationapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810199618820-2lbafk2bf4rnlbpa7mlsdc2bf92ndud0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByjf76xXAr8meH34nQbHc1Uq1Cu1CXkuM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "810199618820-2lbafk2bf4rnlbpa7mlsdc2bf92ndud0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
