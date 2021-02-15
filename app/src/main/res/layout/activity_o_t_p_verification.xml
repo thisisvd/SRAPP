@@ -47,12 +47,12 @@
             android:textSize="15sp"
             android:textStyle="normal" />
 
-        <RelativeLayout
-            android:id="@+id/OTPLayout"
+        <EditText
+            android:id="@+id/OTPEditTextLayout"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_below="@id/OTPTextView2"
-            android:background="#CED"/>
+            android:layout_marginTop="12dp"
+            android:layout_below="@id/OTPTextView2" />
 
         <Button
             android:id="@+id/OTPButton"
@@ -61,7 +61,7 @@
             android:backgroundTint="@color/custom_red"
             android:fontFamily="@font/amaranth"
             android:padding="10dp"
-            android:layout_below="@+id/OTPLayout"
+            android:layout_below="@+id/OTPEditTextLayout"
             android:text="Verify Now"
             android:onClick="clickLoginButton"
             android:textSize="18sp"
