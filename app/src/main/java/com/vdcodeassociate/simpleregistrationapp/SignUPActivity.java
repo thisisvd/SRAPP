@@ -4,10 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.LocusId;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -95,12 +101,48 @@ public class SignUPActivity extends AppCompatActivity {
     }
 
     public void clickCreateAccount(View view) {
+
+        if(!isInternetConnected(this)){
+            showDialog();
+        }
+
         if (!textIsEmpty()) {
             registerUser(username.getText().toString(),email.getText().toString(), password.getText().toString(), phone.getText().toString());
         }else {
             // Something went wrong...
             Log.i("ERROR :- ","SOMETHING WENT WRONG SOMEWHERE!....");
         }
+    }
+
+    //check internet connection ----------
+    private boolean isInternetConnected(SignUPActivity signINActivity) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) signINActivity.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobile = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        if(wifi != null && wifi.isConnected() || mobile != null && mobile.isConnected()) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    private void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SignUPActivity.this);
+        builder.setMessage("Please connect to the internet to proceed further!")
+                .setPositiveButton("Connect", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        builder.show();
     }
 
     private boolean textIsEmpty(){
