@@ -104,13 +104,14 @@ public class SignUPActivity extends AppCompatActivity {
 
         if(!isInternetConnected(this)){
             showDialog();
-        }
-
-        if (!textIsEmpty()) {
-            registerUser(username.getText().toString(),email.getText().toString(), password.getText().toString(), phone.getText().toString());
         }else {
-            // Something went wrong...
-            Log.i("ERROR :- ","SOMETHING WENT WRONG SOMEWHERE!....");
+
+            if (!textIsEmpty()) {
+                registerUser(username.getText().toString(), email.getText().toString(), password.getText().toString(), phone.getText().toString());
+            } else {
+                // Something went wrong...
+                Log.i("ERROR :- ", "SOMETHING WENT WRONG SOMEWHERE!....");
+            }
         }
     }
 
