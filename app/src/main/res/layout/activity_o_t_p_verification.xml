@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SignINActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/OTPToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:layout_below="@+id/OTPToolbar"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/OTPTextView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/amaranth"
+            android:text="OTP Verification!"
+            android:textColor="#1A202E"
+            android:textSize="30sp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:paddingLeft="10dp" android:paddingRight="10dp"/>
+
+        <TextView
+            android:id="@+id/OTPTextView2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/OTPTextView1"
+            android:layout_marginTop="4dp"
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/amaranth"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="We've sent you a PIN in your mobile. Check your SMS messages and enter PIN below."
+            android:textColor="#1A202E"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+        <RelativeLayout
+            android:id="@+id/OTPLayout"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@id/OTPTextView2"
+            android:background="#CED"/>
+
+        <Button
+            android:id="@+id/OTPButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/custom_red"
+            android:fontFamily="@font/amaranth"
+            android:padding="10dp"
+            android:layout_below="@+id/OTPLayout"
+            android:text="Verify Now"
+            android:onClick="clickLoginButton"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/OTPButton"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/amaranth"
+                android:text="Didn't receive any code?"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/resendCodeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/amaranth"
+                android:text="@string/resendCode"
+                android:textColor="@color/black"
+                android:onClick="goToSignUP"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </RelativeLayout>
+    </RelativeLayout>

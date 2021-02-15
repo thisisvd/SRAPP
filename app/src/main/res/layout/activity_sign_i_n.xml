@@ -18,6 +18,13 @@
         android:layout_below="@+id/signInToolbar"
         android:gravity="center_horizontal">
 
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/simplelogin"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"/>
+
     <TextView
         android:id="@+id/signinTextView1"
         android:layout_width="wrap_content"
@@ -53,7 +60,6 @@
         android:layout_below="@+id/signinTextView2"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 
@@ -80,8 +86,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/EmailLayout"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 
@@ -98,14 +102,15 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <TextView
             android:id="@+id/forgotPasswordSignIn"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Forgot password?"
             android:textColor="@color/black"
             android:textSize="13sp"
+            android:onClick="clickForgotPasswordButton"
+            android:layout_marginRight="10dp"
             android:fontFamily="@font/amaranth"
             android:layout_below="@id/signInPasswordLayout"
             android:layout_alignParentRight="true"/>
@@ -119,6 +124,7 @@
             android:padding="10dp"
             android:layout_below="@+id/forgotPasswordSignIn"
             android:text="Sign In"
+            android:layout_marginTop="15dp"
             android:onClick="clickLoginButton"
             android:textSize="18sp"
             android:textStyle="bold"

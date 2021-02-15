@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="20dp"
+        android:gravity="center">
+
+        <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            app:cardCornerRadius="10dp"
+            android:layout_marginTop="30dp"
+            app:cardElevation="20dp">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:src="@drawable/checkmailbox"
+                android:layout_marginBottom="25dp"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/CheckEmailTextView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/amaranth"
+            android:text="Verify your email!"
+            android:textColor="#1A202E"
+            android:layout_marginTop="30dp"
+            android:textSize="25sp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:paddingLeft="10dp" android:paddingRight="10dp"/>
+
+        <TextView
+            android:id="@+id/CheckEmailTextView2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/OTPTextView1"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/amaranth"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="We'll send you a link to verify your email. Click below to send link."
+            android:textColor="#1A202E"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+        <Button
+            android:id="@+id/sendEmailButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/custom_red"
+            android:fontFamily="@font/amaranth"
+            android:padding="10dp"
+            android:text="Send"
+            android:onClick="clickLoginButton"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
+
+        <TextView
+            android:id="@+id/SkipTextView2"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/OTPTextView1"
+            android:layout_marginTop="15dp"
+            android:textAlignment="center"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/amaranth"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Skip, I'll verify later."
+            android:textColor="#1A202E"
+            android:textSize="15sp"
+            android:textStyle="normal"
+            android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

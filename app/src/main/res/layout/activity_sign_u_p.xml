@@ -19,6 +19,13 @@
         android:layout_below="@+id/signUPToolbar"
         android:gravity="center_horizontal">
 
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/illu2"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"/>
+
         <TextView
             android:id="@+id/signUPTextView1"
             android:layout_width="wrap_content"

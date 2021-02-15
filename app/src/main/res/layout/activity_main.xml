@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,6 +11,54 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
 
+        <ImageView
+            android:id="@+id/ImageViewSignIN1"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@drawable/illu1"/>
+
+        <TextView
+            android:id="@+id/welcomeTextView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/amaranth"
+            android:text="Registration App"
+            android:layout_marginTop="25dp"
+            android:textColor="#1A202E"
+            android:layout_below="@id/ImageViewSignIN1"
+            android:textSize="28sp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:paddingLeft="10dp" android:paddingRight="10dp"/>
+
+        <TextView
+            android:id="@+id/welcomeTextView2"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/welcomeTextView1"
+            android:textAlignment="center"
+            android:layout_marginTop="12dp"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/amaranth"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Welcome to our app."
+            android:textAllCaps="true"
+            android:textColor="#1A202E"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+        <View
+            android:id="@+id/ViewLine1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
+            android:background="#722D2F31"
+            android:layout_below="@id/welcomeTextView2"/>
+
+
         <Button
             android:id="@+id/signUpWithEmailID"
             android:layout_width="match_parent"
@@ -19,6 +66,7 @@
             android:backgroundTint="@color/custom_red"
             android:fontFamily="@font/amaranth"
             android:padding="10dp"
+            android:layout_below="@id/ViewLine1"
             android:onClick="goToSignUP"
             android:text="Sign Up with Email ID"
             android:textSize="18sp"

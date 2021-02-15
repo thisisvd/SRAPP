@@ -29,9 +29,9 @@ import java.util.HashMap;
 public class SignUPActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase firebaseDatabase;
     private DatabaseReference reference;
 
-    private TextInputLayout signUPUserNameLayout,signUPEmailLayout,signUPPasswordLayout,signUPPhoneLayout,signUPRetypePasswordLayout;
     private TextInputEditText username,email,password,rePassword,phone;
     private Button createAccountButton;
     ProgressDialog progressDialog;
@@ -50,11 +50,6 @@ public class SignUPActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         progressDialog = new ProgressDialog(this);
-        signUPUserNameLayout = findViewById(R.id.signUPUserNameLayout);
-        signUPEmailLayout = findViewById(R.id.signUPEmailLayout);
-        signUPPasswordLayout = findViewById(R.id.signUPPasswordLayout);
-        signUPRetypePasswordLayout = findViewById(R.id.signUPRetypePasswordLayout);
-        signUPPhoneLayout = findViewById(R.id.signUPPhoneLayout);
         username = findViewById(R.id.signUPUserName);
         email = findViewById(R.id.signUPEmail);
         password = findViewById(R.id.signUPPassword);
@@ -65,51 +60,42 @@ public class SignUPActivity extends AppCompatActivity {
     }
 
     private void registerUser(String username,String email,String password,String phone){
+        progressDialog.setMessage("Please wait!");
+        progressDialog.show();
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                    String userID = firebaseUser.getUid();
 
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                            assert user != null;
-                            String userid = user.getUid();
+                    firebaseDatabase = FirebaseDatabase.getInstance();
+                    reference = FirebaseDatabase.getInstance().getReference("Users");
 
-                            reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+                    User user = new User(username,email,phone);
 
-                            HashMap<String,String> hashMap = new HashMap<>();
-                            hashMap.put("id",userid);
-                            hashMap.put("username",username);
-
-                            reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        Intent intent = new Intent(SignUPActivity.this,DashboardActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-                                }
-                            });
-
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(getApplicationContext(),"Registration failed! Try Again!...",Toast.LENGTH_SHORT).show();
+                    reference.child(userID).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(getApplicationContext(),"Registration successful!...",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignUPActivity.this,DashboardActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
                         }
-                    }
-                });
+                    });
+                }else {
+                    Toast.makeText(getApplicationContext(),"Registration failed! Try again...",Toast.LENGTH_SHORT).show();
+                    progressDialog.cancel();
+                }
+            }
+        });
     }
 
     public void clickCreateAccount(View view) {
-        Log.i("username",username.getText().toString().trim());
-        Log.i("userEmail",email.getText().toString().trim());
-        Log.i("userPassword", password.getText().toString().trim());
-        Log.i("userRePassword",rePassword.getText().toString().trim());
-        Log.i("userPhone",phone.getText().toString().trim());
-
-        if (textIsEmpty()) {
+        if (!textIsEmpty()) {
             registerUser(username.getText().toString(),email.getText().toString(), password.getText().toString(), phone.getText().toString());
         }else {
             // Something went wrong...
@@ -118,40 +104,24 @@ public class SignUPActivity extends AppCompatActivity {
     }
 
     private boolean textIsEmpty(){
-        boolean result = true;
+        boolean result = false;
         String userName = username.getText().toString().trim();
         String userEmail = email.getText().toString().trim();
         String userPassword = password.getText().toString().trim();
         String userRePassword = rePassword.getText().toString().trim();
         String userPhone = phone.getText().toString().trim();
 
-        if(userPassword.length()<6){
-            signUPPasswordLayout.setError("*Password length > 6");
-            result =  false;
-        }
-        if(userName.isEmpty()){
-            signUPUserNameLayout.setError("*Required");
-            result =  false;
-        }
-        if(userEmail.isEmpty()){
-            signUPEmailLayout.setError("*Required");
-            result =  false;
-        }
-        if(userPassword.isEmpty()){
-            signUPPasswordLayout.setError("*Required");
-            result =  false;
-        }
-        if(userRePassword.isEmpty()){
-            signUPRetypePasswordLayout.setError("*Required");
-            result =  false;
-        }
-        if(userPhone.isEmpty()){
-            signUPPhoneLayout.setError("*Required");
-            result =  false;
+        if(userName.isEmpty() || userEmail.isEmpty() || userPassword.isEmpty() || userRePassword.isEmpty() || userPhone.isEmpty()){
+            Toast.makeText(getApplicationContext(),"All fields are required!",Toast.LENGTH_SHORT).show();
+            result = true;
         }
         if(!userPassword.equals(userRePassword)) {
-            signUPRetypePasswordLayout.setError("Password doesn't match");
-            return false;
+            Toast.makeText(getApplicationContext(),"Password doesn't match!",Toast.LENGTH_SHORT).show();
+            result = true;
+        }
+        if(password.length() < 6){
+            Toast.makeText(getApplicationContext(),"Password length shouldn't smaller than 6!",Toast.LENGTH_SHORT).show();
+            result = true;
         }
         return result;
     }

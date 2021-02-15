@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpleRegistrationApp">
-        <activity android:name=".DashboardActivity"></activity>
+        <activity android:name=".ForgotPassword" android:parentActivityName=".SignINActivity"></activity>
+        <activity
+            android:name=".ResetPassword"
+            android:parentActivityName=".MyProfileActivity" />
+        <activity
+            android:name=".MyProfileActivity"
+            android:parentActivityName=".DashboardActivity" />
+        <activity android:name=".OTPVerification" />
+        <activity android:name=".DashboardActivity" />
         <activity
             android:name=".SignUPActivity"
             android:parentActivityName=".MainActivity" />
