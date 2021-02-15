@@ -38,6 +38,8 @@ public class SignUPActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference reference;
 
+
+
     private TextInputEditText username,email,password,rePassword,phone;
     private Button createAccountButton;
     ProgressDialog progressDialog;
@@ -86,9 +88,10 @@ public class SignUPActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
                                 Toast.makeText(getApplicationContext(),"Registration successful!...",Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(SignUPActivity.this,DashboardActivity.class);
+                                Intent intent = new Intent(SignUPActivity.this,OTPVerification.class);
+                                intent.putExtra("phone",SignUPActivity.this.phone.getText().toString().trim());
                                 startActivity(intent);
-                                finish();
+
                             }
                         }
                     });

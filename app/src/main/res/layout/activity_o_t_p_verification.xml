@@ -50,9 +50,11 @@
         <EditText
             android:id="@+id/OTPEditTextLayout"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:layout_below="@id/OTPTextView2" />
+            android:layout_below="@id/OTPTextView2"
+            android:hint="enter the 6-digit code "
+            />
 
         <Button
             android:id="@+id/OTPButton"
