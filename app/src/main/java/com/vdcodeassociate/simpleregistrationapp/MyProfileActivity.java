@@ -110,9 +110,9 @@ public class MyProfileActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(getApplicationContext(),"Verification mail sent!Re-login after verify...",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Mail sent! Please Re-login after verify...",Toast.LENGTH_LONG).show();
                     }else {
-                        Toast.makeText(getApplicationContext()," Verification mail hasn't been sent!..!......",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext()," Verification mail hasn't been sent!..",Toast.LENGTH_SHORT).show();
                     }
                 }
             });

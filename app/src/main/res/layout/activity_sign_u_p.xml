@@ -98,7 +98,7 @@
                 android:drawableStart="@drawable/ic_baseline_email_24"
                 android:drawablePadding="10dp"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="Please enter a valid email"
                 android:textSize="15sp"
                 android:ems="10"
                 android:inputType="textEmailAddress"/>

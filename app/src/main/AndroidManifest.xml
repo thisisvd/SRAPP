@@ -16,7 +16,6 @@
         <activity
             android:name=".MyProfileActivity"
             android:parentActivityName=".DashboardActivity" />
-        <activity android:name=".OTPVerification" />
         <activity android:name=".DashboardActivity" />
         <activity
             android:name=".SignUPActivity"

@@ -24,25 +24,28 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 public class SignUPActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference reference;
-
-
-
     private TextInputEditText username,email,password,rePassword,phone;
     private Button createAccountButton;
     ProgressDialog progressDialog;
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,16 +90,15 @@ public class SignUPActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(getApplicationContext(),"Registration successful!...",Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(SignUPActivity.this,OTPVerification.class);
+//                                Toast.makeText(getApplicationContext(),"Registration successful!...",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignUPActivity.this,DashboardActivity.class);
                                 intent.putExtra("phone",SignUPActivity.this.phone.getText().toString().trim());
                                 startActivity(intent);
-
                             }
                         }
                     });
                 }else {
-                    Toast.makeText(getApplicationContext(),"Registration failed! Try again...",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Email already in use! Try again with different email...",Toast.LENGTH_SHORT).show();
                     progressDialog.cancel();
                 }
             }
